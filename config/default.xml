@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : default.xml
+    Created on : January 30, 2010, 1:42 PM
+    Author     : stephen
+    Description:
+        Default config file for the zf based apps
+-->
+
+<configdata>
+    <production>
+		<environment>
+			<application_path>/var/www/html</application_path>
+			<framework_path>/var/www/html/stephenfarrell.net/framework</framework_path>
+			<layouts_path>views/layouts</layouts_path>
+			<controllers_path>controllers</controllers_path>
+			<objects_path>objects</objects_path>
+			<daos_path>daos</daos_path>
+			<models_path>models</models_path>
+			<config>
+				<folder>config</folder>
+				<files>
+					<application>config.xml</application>
+					<navigation>navigation.xml</navigation>
+					<routes>static_routes.xml</routes>
+				</files>
+			</config>
+		</environment>
+		<bootstrap>
+			<database>true</database>
+			<session>true</session>
+			<mvc>true</mvc>
+		</bootstrap>
+		<themes>
+			<enable>false</enable>
+			<default_theme>default</default_theme>
+			<themes_dir>views/themes</themes_dir>
+			<themes_layouts_dir>layouts</themes_layouts_dir>
+		</themes>
+		<logging>
+			<debug>true</debug>
+			<enabled>true</enabled>
+			<display_exceptions>true</display_exceptions>
+			<!--
+			<storage>
+				<type>Stream</type>
+				<log_name>sf_{%date%}.log</log_name>
+				<log_path>log</log_path>
+			</storage>
+			-->
+			<storage>
+				<type>Db_Sproc</type>
+				<sproc>Sfn_Errors_Pkg.Pr_LogError</sproc>
+			</storage>
+		</logging>
+
+		<resources>
+			<useragent>
+				<wurflapi>
+					<wurfl_api_version>1.1</wurfl_api_version>
+					<wurfl_lib_dir>wurfl-php-1.1/WURFL/</wurfl_lib_dir>
+					<wurfl_config_file>../application/config/wurfl-config.php</wurfl_config_file>
+				</wurflapi>
+			</useragent>
+		</resources>
+    </production>
+    
+    <development extends="production"></development>
+    <test extends="production"></test>
+    <staging extends="production"></staging>
+</configdata>
+<!--
+
+resources.useragent.wurflapi. wurfl_api_version = "1.1"
+resources.useragent.wurflapi. wurfl_lib_dir = APPLICATION_PATH "/../library/wurfl-php-1.1/WURFL/"
+resources.useragent.wurflapi. wurfl_config_file = APPLICATION_PATH "/configs/wurfl-config.php"
+-->
